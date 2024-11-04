@@ -25,25 +25,35 @@ The dataset titled "courier-service_reviews.csv" is structured to facilitate sen
 3. sentiment: This column provides an additional layer of classification (positive and negative) for the mentioned reviews.
 # Clone Repo using 
 [git clone https://github.com/username/Sentiment_Analysis.git] at the folder location.
-# !pip install openai==1.2 tiktoken datasets session-info --quiet
-# Pip install all imports from Requirements.txt file.
+
+# Installations
+
+ !pip install openai==1.2 tiktoken datasets session-info --quiet
+
+ Pip install all imports from Requirements.txt file.
 
 # Authentication 
+
 [Config.json] file that includes authentication required to acess AzureOpenAIAPI.
 
 # Utilities
+
 To count the no of tokens used.
 
 # Task Sentiment Analysis
-# Load the courier-service_reviews.csv file.
+
+Load the courier-service_reviews.csv file.
+
 # Split the Dataset for train-test-split.
 
 To select gold examples for this session, we sample randomly from the test data using a `random_state=42`. This ensures that the examples from multiple runs of the sampling are the same (i.e., they are randomly selected but do not change between different runs of the notebook). Note that we are doing this only to keep execution times low for illustration. In practise, large number of gold examples facilitate robust estimates of model accuracy.
 
 # Load gold examples
+
 Test an single sigle example and see the sentiment.
 
 # Devise Prompt
+
 provide User message template as {courier_service_review}
 Write Zero Shot Message.
 create Zero Shot prompt.
@@ -68,6 +78,7 @@ Create Few Shot Prompt.
         few_shot_prompt (List): A list of dictionaries in the Open AI prompt format
     """
 # Evaluate Prompts
+
 Now we have two sets of prompts that we need to evaluate using gold labels. Since the few-shot prompt depends on the sample of examples that was drawn to make up the prompt, we expect some variability in evaluation. Hence, we evaluate each prompt multiple times to get a sense of the average and the variation around the average.
 
 To reiterate, a choice on the prompt should account for variability due to the choice of the random sample. To aid repeated evaluation, we assemble an evaluation function .
@@ -76,8 +87,10 @@ Let us now use this function to do one evaluation of all the two prompts assembl
 # Evaluate Few Shot Prompt
 WE can see there is little/no difference in Evaluation by micro f1 score.
 However, this is just *one* choice of examples. We will need to run these evaluations with multiple choices of examples to get a sense of variability in F1 score for the few-shot prompt. As an example, let us run evaluations for the few-shot prompt 5 times.
+
 # Compute the average (mean) and measure the variability (standard deviation) of the evaluation scores for both zero shot and few shot prompts.
-Observations and Learnings
+
+# Observations and Learnings
 Sentiment Analysis Insights:
 
 Conducting sentiment analysis on user-generated reviews has revealed the overall perception of ExpressWay Logistics' services.
